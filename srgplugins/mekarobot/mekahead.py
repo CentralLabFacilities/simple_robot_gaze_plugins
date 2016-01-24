@@ -45,7 +45,7 @@ class ROSConnector(threading.Thread):
         threading.Thread.__init__(self)
         self.rlock = threading.RLock()
         rospy.init_node('srgmekaplugin', anonymous=True)
-        self.topic = _topic
+        self.topic = _topic.strip()
         self.run_toggle = True
         self.head_j0 = 0.0
         self.head_j1 = 0.0
@@ -62,12 +62,12 @@ class ROSConnector(threading.Thread):
         self.rlock.release()
 
     def run(self):
-        print ">>> Initializing MEKA-ROS HEAD Subscriber to: %s" % self.inscope.strip()
+        print ">>> Initializing MEKA-ROS HEAD Subscriber to: %s" % self.topic
         head_subscriber = rospy.Subscriber(self.topic, JointState, self.get_head_state, queue_size=1)
         while self.run_toggle is True:
             time.sleep(0.05)
         head_subscriber.unregister()
-        print ">>> Deactivating MEKA-ROS HEAD Subscriber to: %s" % self.inscope.strip()
+        print ">>> Deactivating MEKA-ROS HEAD Subscriber to: %s" % self.topic
 
 
 # THIS CLASS NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
