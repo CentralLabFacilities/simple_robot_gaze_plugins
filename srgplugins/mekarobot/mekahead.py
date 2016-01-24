@@ -83,5 +83,7 @@ class SRGMekaRobotFeedback:
     def get_current_head_state(self):
         self.mw.get_head_state()
 
-    def stop_feedback(self):
+    # THIS METHOD NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
+    # TODO: Implement proper inheritance!
+    def stop(self):
         self.mw.run_toggle = False
