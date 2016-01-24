@@ -43,8 +43,8 @@ class ROSConnector(threading.Thread):
 
     def __init__(self, _topic):
         threading.Thread.__init__(self)
+        print ">>> INFO: Please call rospy.init_node() from parent" % self.topic
         self.rlock = threading.RLock()
-        rospy.init_node('srgmekaplugin', anonymous=True)
         self.topic = _topic.strip()
         self.run_toggle = True
         self.head_j0 = 0.0
