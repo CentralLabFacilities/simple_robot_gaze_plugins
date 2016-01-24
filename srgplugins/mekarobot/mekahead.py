@@ -81,7 +81,7 @@ class SRGMekaRobotFeedback:
     # THIS METHOD NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
     # TODO: Implement proper inheritance!
     def get_current_head_state(self):
-        self.mw.get_head_state()
+        return self.mw.get_head_state()
 
     # THIS METHOD NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
     # TODO: Implement proper inheritance!
