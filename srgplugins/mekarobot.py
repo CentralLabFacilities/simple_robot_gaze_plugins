@@ -30,8 +30,8 @@ Authors: Florian Lier, Simon Schulz
 
 # STD IMPORTS
 import time
-import mutex
 import threading
+from math import degrees
 
 # ROS IMPORTS
 import rospy
@@ -58,7 +58,7 @@ class ROSConnector(threading.Thread):
 
     def get_head_state(self):
         self.rlock.acquire()
-        return float(self.head_j0), float(self.head_j1)
+        return float(degrees(self.head_j0)), float(degrees(self.head_j1))
         self.rlock.release()
 
     def run(self):
@@ -70,7 +70,9 @@ class ROSConnector(threading.Thread):
         print ">>> Deactivating MEKA-ROS HEAD Subscriber to: %s" % self.inscope.strip()
 
 
-class MekaFeedback:
+# THIS CLASS NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
+# TODO: Implement proper inheritance!
+class SRGRobotFeedback:
 
     def __init__(self):
         threading.Thread.__init__(self)
@@ -78,6 +80,8 @@ class MekaFeedback:
         self.mw = ROSConnector("/meka_roscontrol/joint_states")
         self.mw.start()
 
+    # THIS METHOD NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
+    # TODO: Implement proper inheritance!
     def get_current_head_state(self):
         self.mw.get_head_state()
 
