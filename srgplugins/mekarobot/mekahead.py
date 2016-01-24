@@ -75,7 +75,6 @@ class ROSConnector(threading.Thread):
 class SRGRobotFeedback:
 
     def __init__(self):
-        threading.Thread.__init__(self)
         self.rlock = threading.RLock()
         self.mw = ROSConnector("/meka_roscontrol/joint_states")
         self.mw.start()
