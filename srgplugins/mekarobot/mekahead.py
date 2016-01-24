@@ -72,7 +72,7 @@ class ROSConnector(threading.Thread):
 
 # THIS CLASS NEEDS TO BE IMPLEMENTED BY EACH PLUGIN
 # TODO: Implement proper inheritance!
-class SRGRobotFeedback:
+class SRGMekaRobotFeedback:
 
     def __init__(self):
         self.mw = ROSConnector("/meka_roscontrol/joint_states")
