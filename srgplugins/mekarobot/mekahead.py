@@ -83,5 +83,5 @@ class SRGRobotFeedback:
     def get_current_head_state(self):
         self.mw.get_head_state()
 
-    def stop_head_state_sub(self):
+    def stop_feedback(self):
         self.mw.run_toggle = False
