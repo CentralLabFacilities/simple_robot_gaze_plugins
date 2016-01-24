@@ -43,7 +43,7 @@ class ROSConnector(threading.Thread):
 
     def __init__(self, _topic):
         threading.Thread.__init__(self)
-        print ">>> INFO: Please call rospy.init_node() from parent" % self.topic
+        print ">>> INFO: Please call rospy.init_node() from parent"
         self.rlock = threading.RLock()
         self.topic = _topic.strip()
         self.run_toggle = True
