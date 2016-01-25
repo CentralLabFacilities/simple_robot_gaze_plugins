@@ -51,20 +51,16 @@ class ROSConnector(threading.Thread):
         self.head_j1 = 0.0
 
     def get_head_state_ros(self, ros_data):
-        self.rlock.acquire()
         self.head_j0 = ros_data.position[1]
         self.head_j1 = ros_data.position[0]
         print self.head_j1, self.head_j0
-        self.rlock.release()
 
     def get_head_state(self):
-        self.rlock.acquire()
         return float(degrees(self.head_j0)), float(degrees(self.head_j1))
-        self.rlock.release()
 
     def run(self):
         print ">>> Initializing MEKA-ROS HEAD Subscriber to: %s" % self.topic
-        head_subscriber = rospy.Subscriber(self.topic, JointState, self.get_head_state_ros, queue_size=1)
+        head_subscriber = rospy.Subscriber(self.topic, JointState, self.get_head_state_ros, queue_size=2)
         while self.run_toggle is True:
             time.sleep(0.05)
         head_subscriber.unregister()
