@@ -53,7 +53,6 @@ class ROSConnector(threading.Thread):
     def get_head_state_ros(self, ros_data):
         self.head_j0 = ros_data.position[1]
         self.head_j1 = ros_data.position[0]
-        print self.head_j1, self.head_j0
 
     def get_head_state(self):
         return float(degrees(self.head_j0)), float(degrees(self.head_j1))
