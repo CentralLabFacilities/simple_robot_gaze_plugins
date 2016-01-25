@@ -54,6 +54,7 @@ class ROSConnector(threading.Thread):
         self.rlock.acquire()
         self.head_j0 = ros_data.position[1]
         self.head_j1 = ros_data.position[0]
+        print self.head_j1, self.head_j0
         self.rlock.release()
 
     def get_head_state(self):
