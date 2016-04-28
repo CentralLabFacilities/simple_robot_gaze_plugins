@@ -40,7 +40,7 @@ from naoqi import ALProxy
 
 class QiConnector(threading.Thread):
 
-    def __init__(self, _topic):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.rlock = threading.RLock()
         try:
@@ -58,7 +58,7 @@ class QiConnector(threading.Thread):
         self.head_yaw = self.motionProxy.getAngles("HeadYaw", True)
 
     def get_head_state(self):
-        return float(degrees(self.head_pitch)), float(degrees(self.head_yaw))
+        return float(degrees(self.head_pitch[0])), float(degrees(self.head_yaw[0]))
 
     def run(self):
         print ">>> Initializing NAOQI HEAD Subscriber"
